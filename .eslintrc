@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+
+    "plugins": ["react"],
+    "extends": ["eslint:recommended", "airbnb"],
+    //this is to get the import export thing out of the mix
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "rules": {
+        "no-unused-vars" : 0,
+        "no-console" : 0
+    }
+}
