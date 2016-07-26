@@ -28,7 +28,7 @@ describe('<DelayChild />', () => {
   let appOne,
   appTwo;
   beforeEach(() => {
-    appOne = <DelayRender><h1 delay="250"></h1><h2 delay="350"></h2></DelayRender>;
+    appOne = <DelayRender><h1></h1><h2 delay="350"></h2></DelayRender>;
     appTwo = <DelayRender><h1 delay="250"></h1></DelayRender>;
   });
 

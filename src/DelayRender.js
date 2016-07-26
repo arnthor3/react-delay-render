@@ -10,10 +10,14 @@ export class DelayChild extends Component {
     if (this.props.delay === 0) {
       this.setState({ ready: true });
     } else {
-      setTimeout(() => {
+      this.timeout = setTimeout(() => {
         this.setState({ ready: true });
       }, this.props.delay);
     }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
   }
 
   render() {
