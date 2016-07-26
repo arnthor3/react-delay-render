@@ -1,5 +1,40 @@
 import React, { Component, PropTypes } from 'react';
-import DelayChild from './DelayChild';
+
+class DelayChild extends Component {
+  constructor() {
+    super();
+    this.state = { ready: false };
+  }
+
+  componentWillMount() {
+    if (this.props.delay === 0) {
+      this.setState({ ready: true });
+    } else {
+      setTimeout(() => {
+        this.setState({ ready: true });
+      }, this.props.delay);
+    }
+  }
+
+  render() {
+    if (this.state.ready) {
+      if (this.props.children.props.delay) {
+        // fix: Remove unknown prop from the element
+        const props = Object.assign({}, this.props.children.props);
+        delete props.delay;
+        return React.createElement(this.props.children.type, props,
+          this.props.children.props.children);
+      }
+      return this.props.children;
+    }
+    return null;
+  }
+}
+
+DelayChild.propTypes = {
+  delay: React.PropTypes.number,
+  children: React.PropTypes.node,
+};
 
 const reactDelayRender = (props) => {
   // make children an array if it's not
@@ -8,8 +43,7 @@ const reactDelayRender = (props) => {
     <span>
       {children.map((d, i) => (
         <DelayChild key={i} delay={parseInt(d.props.delay, 10)}>{d}</DelayChild>
-      )
-      )}
+      ))}
     </span>
   );
 };
