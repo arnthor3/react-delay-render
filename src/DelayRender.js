@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-class DelayChild extends Component {
+export class DelayChild extends Component {
   constructor() {
     super();
     this.state = { ready: false };
@@ -36,7 +36,7 @@ DelayChild.propTypes = {
   children: React.PropTypes.node,
 };
 
-const reactDelayRender = (props) => {
+export const reactDelayRender = (props) => {
   // make children an array if it's not
   const children = props.children.length ? props.children : [props.children];
   return (
