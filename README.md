@@ -1,4 +1,5 @@
 [![Coverage Status](https://coveralls.io/repos/arnthor3/react-delay-render/badge.svg?branch=master)](https://coveralls.io/r/arnthor3/react-delay-render?branch=master)
+[![Build Status](https://travis-ci.org/arnthor3/react-delay-render.svg?branch=master)](https://travis-ci.org/arnthor3/react-delay-render)
 # React-Delay-Render
 A small component that delays the rendering of components.
 
@@ -26,6 +27,16 @@ render(app, document.getElementById('app');
 ```
 
 ## Development
+
+The component is developed with webpack dev server and hot module loader.
+To run the webpack dev server you just do npm run start.
+
+The server is running on port 8080
+
+``` sh
+npm run start
+```
+
 There are a couple of tests set up with enzyme and mocha, you can run it once by using the test command.
 ``` sh
 npm run test
