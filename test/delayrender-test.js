@@ -28,14 +28,14 @@ describe('<DelayChild />', () => {
   let appOne,
   appTwo;
   beforeEach(() => {
-    appOne = <DelayRender><h1></h1><h2 delay="350"></h2></DelayRender>;
+    appOne = <DelayRender><h1 delay="0"></h1><h1></h1><h2 delay="350"></h2></DelayRender>;
     appTwo = <DelayRender><h1 delay="250"></h1></DelayRender>;
   });
 
   it('it calls render after timeout', function(done) {
     sinon.spy(DelayChild.prototype, 'componentWillMount');
     sinon.spy(DelayChild.prototype, 'render');
-    const wrapper = appOne;
+    const wrapper = mount(appOne);
     setTimeout(() => {
       done();
       expect(DelayChild.prototype.componentWillMount.called).to.equal(true);
@@ -44,6 +44,8 @@ describe('<DelayChild />', () => {
   });
 
   it('it removes timeout if it unmounts before timeout', function(done) {
+    const wrapper = mount(appOne);
+    wrapper.unmount();
     done();
   });
 

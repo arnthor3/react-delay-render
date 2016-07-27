@@ -39,15 +39,19 @@ DelayChild.propTypes = {
   delay: React.PropTypes.number,
   children: React.PropTypes.node,
 };
-
+// A stateless parent component
 export const reactDelayRender = (props) => {
   // make children an array if it's not
   const children = props.children.length ? props.children : [props.children];
   return (
     <span>
-      {children.map((d, i) => (
-        <DelayChild key={i} delay={parseInt(d.props.delay, 10)}>{d}</DelayChild>
-      ))}
+      {children.map((d, i) => {
+        if (d.props.delay) {
+          return <DelayChild key={i} delay={parseInt(d.props.delay, 10)}>{d}</DelayChild>;
+        }
+        return <DelayChild key={i}>{d}</DelayChild>;
+      }
+      )}
     </span>
   );
 };
