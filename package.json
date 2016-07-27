@@ -9,7 +9,7 @@
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm t",
     "start": "webpack-dev-server --inline --hot",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "compile": "babel --presets es2015,react -d lib/ src/",
+    "compile": "./node_modules/.bin/babel --presets es2015,react -d lib/ src/",
     "prepublish": "npm run compile"
   },
   "repository": {
@@ -26,7 +26,6 @@
     "react-dom": "^15.2.1"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
@@ -37,7 +36,7 @@
     "chai": "^3.5.0",
     "coveralls": "^2.11.11",
     "enzyme": "^2.4.1",
-    "eslint": "^3.1.1",
+    "eslint": "^2.9.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-loader": "^1.4.1",
     "eslint-plugin-import": "^1.11.1",
