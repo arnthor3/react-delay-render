@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/arnthor3/react-delay-render/badge.svg?branch=master)](https://coveralls.io/r/arnthor3/react-delay-render?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/arnthor3/react-delay-render/badge.svg?branch=master)](https://coveralls.io/github/arnthor3/react-delay-render?branch=master)
 [![Build Status](https://travis-ci.org/arnthor3/react-delay-render.svg?branch=master)](https://travis-ci.org/arnthor3/react-delay-render)
 # React-Delay-Render
 A small component that delays the rendering of components.
