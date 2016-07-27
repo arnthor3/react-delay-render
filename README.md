@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/arnthor3/react-delay-render/badge.svg?branch=master)](https://coveralls.io/r/arnthor3/react-delay-render?branch=master)
 # React-Delay-Render
 A small component that delays the rendering of components.
 
@@ -12,6 +13,7 @@ npm i -S react-delay-render
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import ReactDelayRender from 'react-delay-render';
+
 const app = (
     <ReactDelayRender>
         <h1 delay="250"> I am waiting for 250 ms before I get rendered </h1>
