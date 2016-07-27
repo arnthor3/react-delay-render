@@ -54,4 +54,3 @@ To run the code coverage
 npm run coverage
 ```
 
-Questions or comments arnthor3@gmail.com
