@@ -8,9 +8,9 @@
     "watch:test": "npm t -- -w",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm t",
     "start": "webpack-dev-server --inline --hot",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "compile": "babel --presets es2015,react -d lib/ src/",
-    "prepublish": "npm run compile"
+    "prepublish": "npm run compile",
   },
   "repository": {
     "type": "git",
