@@ -58,5 +58,35 @@ npm run coverage
 ### Delay
 You can pass in a string or a number. This prop controls the delay time in ms.
 
+This prop works for the children as well as the parent.
+
+``` js
+const delay = (
+  <ReactDelayRender delay="250">
+     <MyComponent delay="350" />
+  </ReactDelayRender>
+);
+```
+
+You can also nest the delays
+
+``` js
+const delay = (
+  <ReactDelayRender delay="250">
+    <h1 delay="250">I am rendered after 0.5s</h1>
+    <ReactDelayRender delay="250">
+      <h1 delay="500">I am rendered after one second</h1>
+    </ReactDelayRender>
+  </ReactDelayRender>
+);
+```
+
 ### onFinishRender
 A callback that is envoked when the first level of children has finished rendering - Note: this only works for the first level of children, if the component has nested ReactDelayRender then you will need to attach a callback to them as well if needed.
+
+``` js
+const complexDelay = (
+  <ReactDelayRender onFinishRender="">
+
+  </ReactDelayRender>
+);

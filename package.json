@@ -1,6 +1,6 @@
 {
   "name": "react-delay-render",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a component that delays the rendering of child components",
   "main": "./lib/DelayRender.js",
   "scripts": {
