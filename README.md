@@ -85,8 +85,21 @@ const delay = (
 A callback that is envoked when the first level of children has finished rendering - Note: this only works for the first level of children, if the component has nested ReactDelayRender then you will need to attach a callback to them as well if needed.
 
 ``` js
-const complexDelay = (
-  <ReactDelayRender onFinishRender="">
 
+const parentDone = () => {
+  console.log('Hello from parent,
+  called after mycomponent renders');
+};
+
+const childDone = () => {
+  console.log('Hello from child, called when the complexDelay has rendered');
+};
+
+const complexDelay = (
+  <ReactDelayRender onFinishRender={parentDone}>
+    <MyComponent delay="250">...</MyComponent>
+    <ReactDelayRender onFinishRender={childDone}>
+      <h2 delay="500"></h2>
+    </ReactDelayRender>
   </ReactDelayRender>
 );
