@@ -1,18 +1,21 @@
 import React, { Component, PropTypes } from 'react';
+import DelayChild from './DelayChild';
 
-export class DelayChild extends Component {
+export class ReactDelayRender extends Component {
   constructor() {
     super();
     this.state = { ready: false };
+    this.done = 0;
+    this.onDoneFn = this.onDone.bind(this);
   }
 
   componentWillMount() {
-    if (this.props.delay === 0) {
-      this.setState({ ready: true });
-    } else {
+    if (this.props.delay) {
       this.timeout = setTimeout(() => {
         this.setState({ ready: true });
       }, this.props.delay);
+    } else {
+      this.setState({ ready: true });
     }
   }
 
@@ -20,47 +23,52 @@ export class DelayChild extends Component {
     clearTimeout(this.timeout);
   }
 
+  onDone() {
+    this.done += 1;
+    const childLen = this.props.children.length || 1;
+    if (this.done === childLen) {
+      if (this.props.onFinishRender) {
+        this.props.onFinishRender();
+      }
+    }
+  }
+
   render() {
     if (this.state.ready) {
-      if (this.props.children.props.delay) {
-        // fix: Remove unknown prop from the element
-        const props = Object.assign({}, this.props.children.props);
-        delete props.delay;
-        return React.createElement(this.props.children.type, props,
-          this.props.children.props.children);
-      }
-      return this.props.children;
+      const children = this.props.children.length ?
+      this.props.children : [this.props.children];
+      return (
+        <span>
+          {children.map((d, i) => {
+            if (d.type.displayName === 'ReactDelayRender') {
+              const props = Object.assign({}, d.props, { key: i });
+              return React.createElement(d.type, props,
+              d.props.children);
+            }
+            return (
+              <DelayChild key={i} delay={d.props.delay} onDone={this.onDoneFn}>
+                {d}
+              </DelayChild>
+            );
+          })}
+        </span>
+      );
     }
-    return null;
+    return <span></span>;
   }
 }
 
-DelayChild.propTypes = {
-  delay: React.PropTypes.number,
-  children: React.PropTypes.node,
-};
-// A stateless parent component
-export const reactDelayRender = (props) => {
-  // make children an array if it's not
-  const children = props.children.length ? props.children : [props.children];
-  return (
-    <span>
-      {children.map((d, i) => {
-        if (d.props.delay) {
-          return <DelayChild key={i} delay={parseInt(d.props.delay, 10)}>{d}</DelayChild>;
-        }
-        return <DelayChild key={i}>{d}</DelayChild>;
-      }
-      )}
-    </span>
-  );
-};
-
-reactDelayRender.propTypes = {
+ReactDelayRender.propTypes = {
   children: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node,
+  ]).isRequired,
+  delay: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number,
   ]),
+  onFinishRender: React.PropTypes.func,
 };
 
-export default reactDelayRender;
+export { DelayChild };
+export default ReactDelayRender;

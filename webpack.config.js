@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'eval-source-map',
   entry: './src/index.js',
-  output: { path: __dirname, filename: './lib/index.js' },
+  output: { path: __dirname, filename: 'bundle.js' },
   module: {
     preLoaders : [
       {

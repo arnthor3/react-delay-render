@@ -53,4 +53,10 @@ To run the code coverage
 ``` sh
 npm run coverage
 ```
+## Props
 
+### Delay
+You can pass in a string or a number. This prop controls the delay time in ms.
+
+### onFinishRender
+A callback that is envoked when the first level of children has finished rendering - Note: this only works for the first level of children, if the component has nested ReactDelayRender then you will need to attach a callback to them as well if needed.
