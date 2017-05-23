@@ -1,28 +1,33 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: './src/index.js',
-  output: { path: __dirname, filename: 'bundle.js' },
+  entry: [
+    'react-hot-loader/patch',
+    './src/index.jsx',
+  ],
+  output: {
+    path: __dirname,
+    filename: 'bundle.js',
+    publicPath: 'http://localhost:8080/dist',
+  },
   module: {
-    preLoaders : [
+    rules: [
+      /*{
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+        options: {
+          fix: true,
+        },
+      },*/
       {
         test: /\.jsx?$/,
-        loaders: ['eslint'],
-        exclude : '/node_modules/'
-      }
-    ],
-    loaders: [
-      {
-        test: /.js?$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react',"react-hmre"]
-        }
-      }
-    ]
+      }],
   },
-}
+};
