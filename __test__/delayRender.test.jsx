@@ -47,7 +47,6 @@ describe('DelayRender', () => {
     const dom = mount(<Test />);
     dom.unmount();
     setTimeout(() => {
-
       expect(render.called).toBe(true);
       done();
     }, 200);
