@@ -20,7 +20,7 @@ const SmallRow = () => (
   </div>
 );
 
-export default ReactDelayRender({ delay: 500 })(SmallApp);
+export default ReactDelayRender({ delay: 500 })(SmallRow);
 
 ```
 
@@ -35,13 +35,13 @@ You can use the delay on the delayed component and the children as well.
 ``` js
 import Delay from 'react-delay-render';
 
-const delay = (
+const Delayed = () => (
   <MyDelayedComponent>
-    <MyOtherDelayedComponent />
+    <MyOtherDelayedComponentChild />
   </MyDelayedComponent>
 );
 
-export default Delay({ delay: 200 })(delay);
+export default Delay({ delay: 200 })(Delayed);
 ```
 
 ### onRender
@@ -61,5 +61,5 @@ const ExampleTwo = () => (
   </DelayedComponent>
 );
 
-export default Delay({delay: 500, onRender: render})()
+export default Delay({delay: 500, onRender: render})(ExampleTwo)
 
