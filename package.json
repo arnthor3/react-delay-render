@@ -1,6 +1,6 @@
 {
   "name": "react-delay-render",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a component that delays the rendering of child components",
   "main": "./lib/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "keywords": [
     "react"
   ],
-  "author": "arnthor agustsson",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "prop-types": "^15.5.10",

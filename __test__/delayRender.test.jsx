@@ -51,4 +51,26 @@ describe('DelayRender', () => {
       done();
     }, 200);
   });
+
+  it('should be able to set delay on children', () => {
+    const render = () => {
+      return 'test';
+    }
+    @DelayRender({ delay: 400, onRender: render})
+    class Test extends React.Component {
+      render() {
+        return (
+          <div>
+            <p delay={100}>This</p>
+            <p delay={150}>Is</p>
+            <p delay={200}>A</p>
+            <p delay={250}>TEST</p>
+          </div>
+        );
+      }
+    }
+    const dom = mount(<Test />);
+
+  });
+
 });
