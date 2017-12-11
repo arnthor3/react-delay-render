@@ -17,12 +17,13 @@ describe('DelayRender', () => {
     expect(dom.find('h1').length).toBe(1);
   });
   it('should delay one component', (done) => {
-
-    const Test = DelayRender({ delay: 50 })(() => <span>TEST</span>);
+    const Element = () => <div><span>TEST</span></div>
+    const Test = DelayRender({ delay: 50 })(Element);
     const dom = mount(<Test />);
-    expect(dom.find('span').length).toBe(0);
+    expect(dom.html()).toBe(null);
     const ren = sinon.spy(Test.prototype, 'render');
     setTimeout(() => {
+      expect(dom.html()).toBe('<div><span>TEST</span></div>') 
       done();
     }, 700);
   });
