@@ -5,7 +5,6 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'eval-source-map',
   entry: [
-    'react-hot-loader/patch',
     './src/index.jsx',
   ],
   output: {

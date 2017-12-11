@@ -1,7 +1,11 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount, shallow, configure } from 'enzyme';
 import sinon from 'sinon';
+
 import DelayRender from '../src/';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 describe('DelayRender', () => {
   it('should render one component', () => {
@@ -13,17 +17,14 @@ describe('DelayRender', () => {
     expect(dom.find('h1').length).toBe(1);
   });
   it('should delay one component', (done) => {
-    const MyElement = () => (
-      <h1 style={{ color: 'red' }}>TEST</h1>
-    );
-    const Test = DelayRender({ delay: 500 })(MyElement);
+
+    const Test = DelayRender({ delay: 50 })(() => <span>TEST</span>);
     const dom = mount(<Test />);
-    expect(dom.find('h1').length).toBe(0);
+    expect(dom.find('span').length).toBe(0);
+    const ren = sinon.spy(Test.prototype, 'render');
     setTimeout(() => {
-      expect(dom.find('h1').length).toBe(1);
-      const h1 = dom.find('h1').childAt(0);
       done();
-    }, 500);
+    }, 700);
   });
   it('should callback when rendering', (done) => {
     const MyElement = () => (
@@ -52,25 +53,5 @@ describe('DelayRender', () => {
     }, 200);
   });
 
-  it('should be able to set delay on children', () => {
-    const render = () => {
-      return 'test';
-    }
-    @DelayRender({ delay: 400, onRender: render})
-    class Test extends React.Component {
-      render() {
-        return (
-          <div>
-            <p delay={100}>This</p>
-            <p delay={150}>Is</p>
-            <p delay={200}>A</p>
-            <p delay={250}>TEST</p>
-          </div>
-        );
-      }
-    }
-    const dom = mount(<Test />);
-
-  });
 
 });

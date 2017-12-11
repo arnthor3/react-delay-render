@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const DelayRender = (args = {}) => Element => class Test extends Component {
+export default (args = {}) => Element => class DelayRender extends Component {
   constructor() {
     super();
     this.state = { ready: true };
@@ -37,5 +37,3 @@ const DelayRender = (args = {}) => Element => class Test extends Component {
     return null;
   }
 };
-
-export default DelayRender;
