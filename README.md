@@ -66,5 +66,6 @@ export default Delay({delay: 500, onRender: render})(ExampleTwo)
 
 ### Licence 
 MIT Copyright (c) 2015 Chris Shiplet
+
 Changes MIT 2017 Arnthor Agustsson
 
